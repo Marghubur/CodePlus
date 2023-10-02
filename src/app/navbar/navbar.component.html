@@ -1,0 +1,30 @@
+<div class="bg-white pb-2">
+    <div class="container mt-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <p class="mb-0">
+                <a href="javascript:void(0)" class="text-decoration-none text-dark fs-3 fw-semibold">Code Plus
+                    <span class="waviy">
+                        <span style="--i:1">B</span>
+                        <span style="--i:2">L</span>
+                        <span style="--i:3">O</span>
+                        <span style="--i:4">G</span>
+                    </span>
+                </a>
+            </p>
+            <a href="javascript:void(0)" class="text-decoration-none text-dark">
+                <i class="fa fa-bars fa-lg"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="border-bottom py-2">
+    <div class="container py-1">
+        <div class="col-md-12 d-flex my-0 py-0">
+            <ul class="d-flex align-items-center list-unstyled my-0 py-0">
+                <li *ngFor="let item of menu" class="">
+                    <a href="javascript:void(0)" class="text-decoration-none text-dark pe-2 me-3 fw-semibold" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[item.Link]" routerLinkActive="router-link-active" >{{item.Name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

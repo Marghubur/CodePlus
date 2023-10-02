@@ -1,0 +1,17 @@
+.router-link-active {
+    color: #f012be !important;
+}
+
+.waviy span {
+    position: relative;
+    display: inline-block;
+    color: #f012be;
+    text-transform: uppercase;
+    animation: flip 2s infinite;
+    animation-delay: calc(.2s * var(--i))
+}
+@keyframes flip {
+    0%,80% {
+        transform: rotateY(360deg) 
+    }
+}
