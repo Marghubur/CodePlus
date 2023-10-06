@@ -11,6 +11,11 @@ import { ViewContentComponent } from './view-content/view-content.component';
 import { EditorComponent } from './editor/editor.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from  '@angular/common/http';
+import { ContentListComponent } from './content-list/content-list.component';
+import { LoginComponent } from './login/login.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { SignupComponent } from './signup/signup.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { HttpClientModule } from  '@angular/common/http';
     LoaderComponent,
     FooterComponent,
     ViewContentComponent,
-    EditorComponent
+    EditorComponent,
+    ContentListComponent,
+    LoginComponent,
+    BreadcrumbComponent,
+    SignupComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

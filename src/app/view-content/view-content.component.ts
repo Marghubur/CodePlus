@@ -24,9 +24,8 @@ export class ViewContentComponent implements OnInit {
     this.common.loader(true);
     this.route.queryParamMap.subscribe((params: any) => this.item = params.params); // output: 
     this.loadData();
-    this.common.loader(false);
   }
-
+  
   loadData() {
     this.isFileFound = false;
     let value = (this.data as any).default;
@@ -35,6 +34,7 @@ export class ViewContentComponent implements OnInit {
       this.common.readTxtFile(selecteddata.Folder ,selecteddata.FileName).subscribe((res: any) => {
         this.content = this.sanitizer.bypassSecurityTrustHtml(res);
         this.isFileFound = true;
+        this.common.loader(false);
       }, (error) => {
         this.common.loader(false);
         console.log(error)

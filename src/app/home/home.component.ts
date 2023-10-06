@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonService } from '../services/common.service';
+import { TopicContent } from 'src/util/intrface';
+import * as jsonData from '../../assets/content-detail.json'; 
 
 @Component({
   selector: 'app-home',
@@ -7,30 +10,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  item: Array<ItemDetail> = [];
+  item: Array<TopicContent> = [];
+  data: any = jsonData;
   
-  constructor(private router:Router) {}
+  constructor(private router:Router,
+              private common: CommonService) {}
 
   ngOnInit(): void {
-    this.item = [{
-      Title: "C# Generics Interview Questions",
-      Detail: "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part." ,
-      Img: "assets/c1.jpg",
-      Type: "C#",
-      Part: 1
-    }]
+    this.common.loader(true);
+    this.item = (this.data as any).default;
+    this.common.loader(false);
   }
 
-  viewContent(item:ItemDetail) {
+  viewContent(item:TopicContent) {
     this.router.navigate(['/blog/view'], {queryParams: {type: item.Type, part: item.Part}});
   }
-}
-
-interface ItemDetail {
-  Title: string,
-  Img: string,
-  Detail: string,
-  Link?: string,
-  Type: string,
-  Part: number
 }

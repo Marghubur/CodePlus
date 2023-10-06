@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavMenu } from 'src/util/constant';
 
 @Component({
   selector: 'app-navbar',
@@ -6,14 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  menu: Array<any> = [
-    {
-      Name: "Home",
-      Link: "/home"
-    },
-    {
-      Name: "Video",
-      Link: ""
-    }
-  ]
+  menu: Array<any> = NavMenu;
 }

@@ -1,9 +1,102 @@
 [
     {
         "FileName": "Csharp_01.txt",
-        "Type": "c#",
+        "Type": "C#",
         "Folder": "Csharp",
         "Id": 1,
-        "Part": 1
+        "Part": 1,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_02",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 2,
+        "Part": 2,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_03",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 3,
+        "Part": 3,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_04",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 4,
+        "Part": 4,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_05",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 5,
+        "Part": 5,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_06",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 6,
+        "Part": 6,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_07",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 7,
+        "Part": 7,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_08",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 8,
+        "Part": 8,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_09",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 9,
+        "Part": 9,
+        "Img": "assets/c1.jpg",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Title": "C# Generics Interview Questions"
+    },
+    {
+        "FileName": "Csharp_10",
+        "Type": "C#",
+        "Folder": "Csharp",
+        "Id": 10,
+        "Part": 10,
+        "Title": "C# Generics Interview Questions",
+        "Detail": "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.",
+        "Img": "assets/c1.jpg"
     }
 ]

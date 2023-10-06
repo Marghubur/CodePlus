@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 declare var $:any;
 import 'bootstrap';
+import { FolderName, Type } from 'src/util/constant';
+import { TopicContent } from 'src/util/intrface';
+import { CommonService } from '../services/common.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-editor',
@@ -15,16 +20,22 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   imageURL: string = "";
   rows: number = 0;
   columns: number = 0;
-  fileDetail:TextFile = {
+  fileDetail:TopicContent = {
     BodyContent : "",
     FileName: "",
     Folder: "",
     Part: 0,
     Type:""
   }
-  FolderName: Array<string> = ["Csharp", "Linq", "Angular"]
-  Type: Array<string> = ["C#", "Linq", "Angular"]
-  constructor(private http: HttpClient) {}
+  FolderName: Array<string> = FolderName;
+  Type: Array<string> = Type;
+  param: any = null;
+  content: any = null;
+  
+  constructor(private http: HttpClient,
+              private route: ActivatedRoute,
+              private sanitizer: DomSanitizer,
+              private common: CommonService) {}
 
   ngAfterViewChecked(): void {
     $('[data-bs-toggle="tooltip"]').tooltip({
@@ -37,6 +48,24 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+    this.common.loader(true);
+    this.route.queryParamMap.subscribe((params: any) => this.param = params.params); // output: 
+    if (this.param && this.param.FileName) {
+      this.fileDetail.FileName = this.param.FileName;
+      this.fileDetail.Folder = this.param.Folder;
+      this.fileDetail.Part = this.param.Part;
+      this.fileDetail.Type = this.param.Type;
+      console.log(this.fileDetail);
+      this.common.readTxtFile(this.fileDetail.Folder ,this.fileDetail.FileName).subscribe((res: any) => {
+        this.content = this.sanitizer.bypassSecurityTrustHtml(res);
+        this.common.loader(false);
+      }, (error) => {
+        this.common.loader(false);
+        console.log(error)
+      });
+    } else {
+      this.common.loader(false);
+    }
     this.richTextField = document.getElementById("richTextField");
     this.enableEditMode();
   }
@@ -139,12 +168,4 @@ export class EditorComponent implements OnInit, AfterViewChecked {
     }
   }
 
-}
-
-interface TextFile {
-  FileName: string,
-  BodyContent: string,
-  Folder: string,
-  Type: string,
-  Part: number
 }

@@ -20,7 +20,7 @@ export class CommonService {
 
   readTxtFile(folder: string, fileName: string) {
     if (fileName) {
-      return this.http.get(`assets/${folder}/${fileName}` , { responseType: 'text' });
+      return this.http.get(`assets/${folder}/${fileName}.txt` , { responseType: 'text' });
     }
   }
 }
