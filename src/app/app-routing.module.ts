@@ -8,16 +8,25 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthguardGuard } from 'src/Auth/authguard.guard';
+import { Article, BlogContent, BlogEditor, BlogView, Book, ForgotPassword, Home, Links, Login, SignUp, Video } from 'src/util/constant';
+import { VideoComponent } from './video/video.component';
+import { BookComponent } from './book/book.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { LinksComponent } from './links/links.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent, data: {breadcrumb: "Home"}},
-  {path: 'blog/view', component: ViewContentComponent, data: {breadcrumb: "View"}},
-  {path: 'blog/editor', component: EditorComponent, data: {breadcrumb: "Editor"}, canActivate: [AuthguardGuard]},
-  {path: 'blog/content', component: ContentListComponent, data: {breadcrumb: "Content"}, canActivate: [AuthguardGuard]},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'forgot-password', component: ForgotPasswordComponent}
+  {path: Home, component: HomeComponent, data: {breadcrumb: "Home"}},
+  {path: BlogView, component: ViewContentComponent, data: {breadcrumb: "View"}},
+  {path: BlogEditor, component: EditorComponent, data: {breadcrumb: "Editor"}, canActivate: [AuthguardGuard]},
+  {path: BlogContent, component: ContentListComponent, data: {breadcrumb: "Content"}, canActivate: [AuthguardGuard]},
+  {path: Login, component: LoginComponent},
+  {path: SignUp, component: SignupComponent},
+  {path: ForgotPassword, component: ForgotPasswordComponent},
+  {path: Video, component: VideoComponent},
+  {path: Article, component: ArticlesComponent},
+  {path: Book, component: BookComponent},
+  {path: Links, component: LinksComponent}
 ];
 
 @NgModule({

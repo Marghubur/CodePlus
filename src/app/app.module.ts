@@ -9,13 +9,17 @@ import { LoaderComponent } from './loader/loader.component';
 import { FooterComponent } from './footer/footer.component';
 import { ViewContentComponent } from './view-content/view-content.component';
 import { EditorComponent } from './editor/editor.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from  '@angular/common/http';
 import { ContentListComponent } from './content-list/content-list.component';
 import { LoginComponent } from './login/login.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { VideoComponent } from './video/video.component';
+import { BookComponent } from './book/book.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { LinksComponent } from './links/links.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +34,18 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     LoginComponent,
     BreadcrumbComponent,
     SignupComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    VideoComponent,
+    BookComponent,
+    ArticlesComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule 
+    HttpClientModule ,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

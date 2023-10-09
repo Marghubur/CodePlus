@@ -20,7 +20,8 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="javascript:void(0)">You are Reader</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/login']">Sign In</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" *ngIf="!isLogIn" [routerLink]="['/login']">Sign In</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" *ngIf="isLogIn" (click)="logOut()">Sign Out</a></li>
                 </ul>
               </div>
         </div>
@@ -31,7 +32,18 @@
         <div class="col-md-12 d-flex my-0 py-0">
             <ul class="d-flex align-items-center list-unstyled my-0 py-0">
                 <li *ngFor="let item of menu" class="">
-                    <a href="javascript:void(0)" class="text-decoration-none text-dark pe-2 me-3 fw-semibold" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[item.Link]" routerLinkActive="router-link-active" >{{item.Name}}</a>
+                    <ng-container *ngIf="item.AccessCode == 0">
+                        <a href="javascript:void(0)" class="text-decoration-none text-dark pe-2 me-3 fw-semibold" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[item.Link]" routerLinkActive="router-link-active" >
+                            <i [className]="item.Icon"></i>
+                            <span class="ps-2">{{item.Name}}</span>
+                        </a>
+                    </ng-container>
+                    <ng-container *ngIf="item.AccessCode > 0 && isAdmin">
+                        <a href="javascript:void(0)" class="text-decoration-none text-dark pe-2 me-3 fw-semibold" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[item.Link]" routerLinkActive="router-link-active" >
+                            <i [className]="item.Icon"></i>
+                            <span class="ps-2">{{item.Name}}</span>
+                        </a>
+                    </ng-container>
                 </li>
             </ul>
         </div>

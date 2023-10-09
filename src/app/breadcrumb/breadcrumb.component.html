@@ -1,7 +1,7 @@
-<ol class="breadcrumb">
-    <li *ngFor="let breadcrumb of breadcrumbs">
-      <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
-        {{ breadcrumb.label }}
-      </span>
-    </li>
-  </ol>
+<ul id="breadcrumb">
+  <li><a href="javascript:void(0)" [routerLink]="['/home']"><span class="fa fa-home"> </span></a></li>
+  <li *ngFor="let breadcrumb of breadcrumbs">
+    <a href="javascript:void(0)" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+      <span class=" fa fa-info-circle"> </span> {{ breadcrumb.label }}</a>
+  </li>
+</ul>
