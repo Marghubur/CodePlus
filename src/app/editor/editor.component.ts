@@ -7,6 +7,7 @@ import { FolderName, Type } from 'src/util/constant';
 import { TopicContent } from 'src/util/intrface';
 import { CommonService } from '../services/common.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AjaxService } from '../services/ajax.service';
 
 @Component({
   selector: 'app-editor',
@@ -31,8 +32,10 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   Type: Array<string> = Type;
   param: any = null;
   content: any = null;
-  
-  constructor(private http: HttpClient,
+  imgUrl: string = null;
+  imgFileDetail: Array<any> = [];
+
+  constructor(private http: AjaxService,
               private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
               private common: CommonService) {}
@@ -159,13 +162,38 @@ export class EditorComponent implements OnInit, AfterViewChecked {
       let value = (document.getElementById("richTextField") as HTMLIFrameElement).contentWindow.document.body.innerHTML;
       if (value) {
         this.fileDetail.BodyContent = value;
-        this.http.post("https://localhost:5001/api/GenerateTxtFile/GenarateFile", this.fileDetail).subscribe(res => {
+        this.fileDetail.Detail = "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.";
+        this.fileDetail.Title = "C# Generics Interview Questions";
+        let formData = new FormData();
+        formData.append("article", JSON.stringify(this.fileDetail));
+        formData.append("file", this.imgFileDetail[0].file);
+        this.http.post("Article/SaveArticle", formData).subscribe(res => {
           console.log("save");
         }, (error) => {console.log(error)})
       }
     } else {
       console.log("Folder name , file name, Part and Type is manditory.");
     }
+  }
+
+  uploadFile(event: any) {
+    if (event.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        this.imgUrl = event.target.result;
+      };
+      let selectedfile = event.target.files;
+      let file = <File>selectedfile[0];
+      this.imgFileDetail.push({
+        name: "logo",
+        file: file
+      });
+    }
+  }
+
+  fireBrowserImgFile() {
+    $('#uploadocument').click();
   }
 
 }

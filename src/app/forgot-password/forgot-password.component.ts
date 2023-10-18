@@ -16,7 +16,7 @@ export class ForgotPasswordComponent {
   forgotPassword() {
     let value = (<HTMLInputElement>document.getElementById("email")).value;
     if (value) {
-      this.http.post("User/ForgotPassword", value).subscribe((res:any) => {
+      this.http.get(`User/ForgotPassword/${value}`).subscribe((res:any) => {
         if (res.ResponseBody) {
           console.log("Password is send in your register email");
           this.router.navigateByUrl(Login)
