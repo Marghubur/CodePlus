@@ -22,7 +22,7 @@ export class ContentListComponent implements OnInit {
   }
 
   editContent(item: TopicContent) {
-    this.router.navigate(['/blog/editor'], {queryParams: {Type: item.Type, Id: item.ContentId, Part: item.Part}});
+    this.router.navigate(['/blog/editor'], {queryParams: {Type: item.Type, contentId: item.ContentId, Part: item.Part}});
   }
 
   loadData() {

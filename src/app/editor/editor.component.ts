@@ -27,8 +27,8 @@ export class EditorComponent implements OnInit, AfterViewChecked {
     FilePath: "",
     ImgPath: "",
     Type:"",
-    Title: "C# Generics Interview Questions",
-    Detail: "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part."
+    Title: "",
+    Detail: ""
   }
   Type: Array<string> = Type;
   param: any = null;
@@ -52,7 +52,6 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-    this.common.loader(true);
     this.route.queryParamMap.subscribe((params: any) => this.param = params.params); // output: 
     this.loadData(this.param);
     this.richTextField = document.getElementById("richTextField");
@@ -66,8 +65,8 @@ export class EditorComponent implements OnInit, AfterViewChecked {
         if (res.ResponseBody) {
           this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody.BodyContent);
           this.fileDetail = res.ResponseBody;
+          this.imageURL = this.http.imgBaseUrl + this.fileDetail.ImgPath;
           this.common.loader(false);
-          console.log(res.ResponseBody)
         }
       }, (err) => {
         this.common.loader(false);
