@@ -5,18 +5,14 @@
                 <th>#</th>
                 <th>Type</th>
                 <th>Part</th>
-                <th>Folder</th>
-                <th>File Name</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of contentDetail; let i=index">
-                <td>{{item.Id}}</td>
+                <td>{{item.ContentId}}</td>
                 <td>{{item.Type}}</td>
                 <td>{{item.Part}}</td>
-                <td>{{item.Folder}}</td>
-                <td>{{item.FileName}}</td>
                 <td>
                     <a href="javascript:void(0)" class="text-decoration-none" (click)="editContent(item)">
                         <i class="fa fa-pencil-square-o"></i>

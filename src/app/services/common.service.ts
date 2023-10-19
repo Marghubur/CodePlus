@@ -18,16 +18,6 @@ export class CommonService {
     this.isLoading.next(status);
   }
 
-  getContentList() {
-    return this.http.get("assets/content-detail.json");
-  }
-
-  readTxtFile(folder: string, fileName: string) {
-    if (fileName) {
-      return this.http.get(`assets/${folder}/${fileName}.txt` , { responseType: 'text' });
-    }
-  }
-
   isAdmin(): boolean {
     let flag = false;
     let data = this.local.getData(masterkey);

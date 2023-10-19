@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonService, ContentList } from '../services/common.service';
-import * as jsonData from '../../assets/content-detail.json';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AjaxService } from '../services/ajax.service';
 
@@ -15,7 +14,6 @@ export class ViewContentComponent implements OnInit {
   now: Date = new Date();
   isFileFound: boolean = false;
   content: any = null;
-  data: any = jsonData;
 
   constructor(private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
@@ -23,7 +21,6 @@ export class ViewContentComponent implements OnInit {
               private common: CommonService) {}
 
   ngOnInit(): void {
-    // this.common.loader(true);
     this.route.queryParamMap.subscribe((params: any) => this.item = params.params); // output: 
     this.loadData();
   }
@@ -33,7 +30,7 @@ export class ViewContentComponent implements OnInit {
       this.common.loader(true);
       this.http.get(`Article/GetContentById/${this.item.contentId}`).subscribe((res: any) => {
         if (res.ResponseBody) {
-          this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody);
+          this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody.BodyContent);
           this.isFileFound = true;
           this.common.loader(false);
           console.log(res.ResponseBody)

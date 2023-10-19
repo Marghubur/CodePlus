@@ -54,24 +54,26 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.common.loader(true);
     this.route.queryParamMap.subscribe((params: any) => this.param = params.params); // output: 
-    if (this.param && this.param.FileName) {
-      let FileName = this.param.FileName;
-      let Folder = this.param.Folder;
-      this.fileDetail.Part = this.param.Part;
-      this.fileDetail.Type = this.param.Type;
-      console.log(this.fileDetail);
-      this.common.readTxtFile(Folder ,FileName).subscribe((res: any) => {
-        this.content = this.sanitizer.bypassSecurityTrustHtml(res);
-        this.common.loader(false);
-      }, (error) => {
-        this.common.loader(false);
-        console.log(error)
-      });
-    } else {
-      this.common.loader(false);
-    }
+    this.loadData(this.param);
     this.richTextField = document.getElementById("richTextField");
     this.enableEditMode();
+  }
+
+  loadData(item: any) {
+    if (item.contentId > 0) {
+      this.common.loader(true);
+      this.http.get(`Article/GetContentById/${item.contentId}`).subscribe((res: any) => {
+        if (res.ResponseBody) {
+          this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody.BodyContent);
+          this.fileDetail = res.ResponseBody;
+          this.common.loader(false);
+          console.log(res.ResponseBody)
+        }
+      }, (err) => {
+        this.common.loader(false);
+        console.log(err.error.StatusMessage);
+      })
+    }
   }
 
 
@@ -197,6 +199,7 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   }
 
   fireBrowserImgFile() {
+    this.imgFileDetail = [];
     $('#uploadocument').click();
   }
 

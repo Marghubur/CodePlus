@@ -8,8 +8,6 @@ export interface TopicContent {
     FilePath: string,
     ImgPath: string,
     ContentId?: number,
-    FileName?: string,
-    Folder?: string
 }  
 
 export interface IBreadCrumb {
