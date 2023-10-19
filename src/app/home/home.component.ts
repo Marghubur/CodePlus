@@ -19,16 +19,32 @@ export class HomeComponent implements OnInit {
               private http: AjaxService) {}
 
   ngOnInit(): void {
-    this.common.loader(true);
-    this.item = (this.data as any).default;
-    this.common.loader(false);
+    // this.common.loader(true);
+    //this.item = (this.data as any).default;
+    // this.common.loader(false);
+    this.loadData();
   }
 
   loadData() {
-    this.http.get("User");
+    this.common.loader(true);
+    this.http.get("Article/GetContentList").subscribe((res: any) => {
+      if (res.ResponseBody) {
+        this.common.loader(false);
+        this.item = res.ResponseBody;
+        if (this.item && this.item.length > 0) {
+          this.item.forEach(x => {
+            x.ImgPath = this.http.imgBaseUrl + x.ImgPath;
+          })
+        }
+        console.log(this.item )
+      }
+    }, (err) => {
+      this.common.loader(false);
+      console.log(err.error.StatusMessage);
+    })
   }
 
   viewContent(item:TopicContent) {
-    this.router.navigate(['/blog/view'], {queryParams: {type: item.Type, part: item.Part}});
+    this.router.navigate(['/blog/view'], {queryParams: {type: item.Type, part: item.Part, contentId: item.ContentId}});
   }
 }

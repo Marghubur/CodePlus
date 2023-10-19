@@ -1,14 +1,15 @@
 export interface TopicContent {
-    FileName: string,
     BodyContent: string,
-    Folder: string,
     Type: string,
     Part: number
     Title?: string,
-    Img?: string,
     Detail?: string,
     Link?: string,
-    Id?: number
+    FilePath: string,
+    ImgPath: string,
+    ContentId?: number,
+    FileName?: string,
+    Folder?: string
 }  
 
 export interface IBreadCrumb {

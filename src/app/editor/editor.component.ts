@@ -3,7 +3,7 @@ import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 declare var $:any;
 import 'bootstrap';
-import { FolderName, Type } from 'src/util/constant';
+import { Type } from 'src/util/constant';
 import { TopicContent } from 'src/util/intrface';
 import { CommonService } from '../services/common.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -23,12 +23,13 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   columns: number = 0;
   fileDetail:TopicContent = {
     BodyContent : "",
-    FileName: "",
-    Folder: "",
     Part: 0,
-    Type:""
+    FilePath: "",
+    ImgPath: "",
+    Type:"",
+    Title: "C# Generics Interview Questions",
+    Detail: "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part."
   }
-  FolderName: Array<string> = FolderName;
   Type: Array<string> = Type;
   param: any = null;
   content: any = null;
@@ -54,12 +55,12 @@ export class EditorComponent implements OnInit, AfterViewChecked {
     this.common.loader(true);
     this.route.queryParamMap.subscribe((params: any) => this.param = params.params); // output: 
     if (this.param && this.param.FileName) {
-      this.fileDetail.FileName = this.param.FileName;
-      this.fileDetail.Folder = this.param.Folder;
+      let FileName = this.param.FileName;
+      let Folder = this.param.Folder;
       this.fileDetail.Part = this.param.Part;
       this.fileDetail.Type = this.param.Type;
       console.log(this.fileDetail);
-      this.common.readTxtFile(this.fileDetail.Folder ,this.fileDetail.FileName).subscribe((res: any) => {
+      this.common.readTxtFile(Folder ,FileName).subscribe((res: any) => {
         this.content = this.sanitizer.bypassSecurityTrustHtml(res);
         this.common.loader(false);
       }, (error) => {
@@ -158,21 +159,24 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   }
 
   saveContent() {
-    if (this.fileDetail.FileName && this.fileDetail.Folder && this.fileDetail.Part > 0 && this.fileDetail.Type) {
+    if (this.fileDetail.Part > 0 && this.fileDetail.Type && this.imgFileDetail && this.imgFileDetail.length > 0 && this.fileDetail.Title && this.fileDetail.Detail) {
       let value = (document.getElementById("richTextField") as HTMLIFrameElement).contentWindow.document.body.innerHTML;
       if (value) {
+        this.common.loader(true);
         this.fileDetail.BodyContent = value;
-        this.fileDetail.Detail = "This is the 1st part of this C# Interview Questions and Answers article series. Each part will contain 10 C# Interview Questions with Answers. I will highly recommend to please read the previous parts always before reading the current part.";
-        this.fileDetail.Title = "C# Generics Interview Questions";
         let formData = new FormData();
         formData.append("article", JSON.stringify(this.fileDetail));
-        formData.append("file", this.imgFileDetail[0].file);
+        formData.append(`${this.fileDetail.Type}_${this.fileDetail.Part}`, this.imgFileDetail[0].file);
         this.http.post("Article/SaveArticle", formData).subscribe(res => {
           console.log("save");
-        }, (error) => {console.log(error)})
+          this.common.loader(false);
+        }, (error) => {
+          console.log(error);
+          this.common.loader(false);
+        })
       }
     } else {
-      console.log("Folder name , file name, Part and Type is manditory.");
+      console.log("Title, Detail, Part, Type and Thumbnail is manditory.");
     }
   }
 

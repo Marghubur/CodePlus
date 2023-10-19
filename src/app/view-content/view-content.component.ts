@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonService, ContentList } from '../services/common.service';
 import * as jsonData from '../../assets/content-detail.json';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AjaxService } from '../services/ajax.service';
 
 @Component({
   selector: 'app-view-content',
@@ -18,28 +19,29 @@ export class ViewContentComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
+              private http: AjaxService,
               private common: CommonService) {}
 
   ngOnInit(): void {
-    this.common.loader(true);
+    // this.common.loader(true);
     this.route.queryParamMap.subscribe((params: any) => this.item = params.params); // output: 
     this.loadData();
   }
-  
+
   loadData() {
-    this.isFileFound = false;
-    let value = (this.data as any).default;
-    let selecteddata:ContentList = value.find(x => x.Type.toLocaleLowerCase() === this.item.type.toLocaleLowerCase() && x.Part == this.item.part);
-    if (selecteddata) {
-      this.common.readTxtFile(selecteddata.Folder ,selecteddata.FileName).subscribe((res: any) => {
-        this.content = this.sanitizer.bypassSecurityTrustHtml(res);
-        this.isFileFound = true;
+    if (this.item.contentId > 0) {
+      this.common.loader(true);
+      this.http.get(`Article/GetContentById/${this.item.contentId}`).subscribe((res: any) => {
+        if (res.ResponseBody) {
+          this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody);
+          this.isFileFound = true;
+          this.common.loader(false);
+          console.log(res.ResponseBody)
+        }
+      }, (err) => {
         this.common.loader(false);
-      }, (error) => {
-        this.common.loader(false);
-        console.log(error)
-      });
+        console.log(err.error.StatusMessage);
+      })
     }
   }
-
 }

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       }
     }, (err) => {
       this.common.loader(false);
-      console.log("Email or password is not matched");
+      console.log(err.error.StatusMessage);
     })
   }
   

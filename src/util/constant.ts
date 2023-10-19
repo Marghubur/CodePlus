@@ -40,8 +40,7 @@ export const NavMenu: Array<any> = [
     }
 ];
 
-export const FolderName: Array<string> = ["Csharp", "Linq", "Angular"]
-export const Type: Array<string> = ["C#", "Linq", "Angular"]
+export const Type: Array<string> = ["CSharp", "Linq", "Angular"]
 
 export const masterkey = "codeplus_master";
 

@@ -5,8 +5,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AjaxService {
-  // baseUrl: string = "http://localhost:5000/api/";
+  //baseUrl: string = "http://localhost:5000/api/";
   baseUrl: string = "https://marghub.bsite.net/api/";
+  //imgBaseUrl: string = "http://localhost:5000/";
+  imgBaseUrl: string = "https://marghub.bsite.net/";
 
   constructor(private http: HttpClient) { }
 

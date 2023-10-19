@@ -46,7 +46,7 @@ export class SignupComponent {
       }
     }, (err) => {
       this.common.loader(false);
-      console.log("Email or password is not matched");
+      console.log(err.error.StatusMessage);
     })
   }
 }
