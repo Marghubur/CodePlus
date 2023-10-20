@@ -22,6 +22,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { LinksComponent } from './links/links.component';
 import { JwtIntercpetorInterceptor } from 'src/Auth/jwt-intercpetor.interceptor';
 import { ToastComponent } from './toast/toast.component';
+import { ErrorInterceptor } from 'src/Auth/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ToastComponent } from './toast/toast.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtIntercpetorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

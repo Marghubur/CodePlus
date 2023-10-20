@@ -71,7 +71,7 @@ export class EditorComponent implements OnInit, AfterViewChecked {
         }
       }, (err) => {
         this.common.loader(false);
-        this.common.error(err.error.StatusMessage);
+        this.common.error(err);
       })
     }
   }
@@ -161,7 +161,7 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   }
 
   saveContent() {
-    if (this.fileDetail.Part > 0 && this.fileDetail.Type && this.imgFileDetail && this.imgFileDetail.length > 0 && this.fileDetail.Title && this.fileDetail.Detail) {
+    if (this.fileDetail.Type && this.imgFileDetail && this.imgFileDetail.length > 0 && this.fileDetail.Title && this.fileDetail.Detail) {
       let value = (document.getElementById("richTextField") as HTMLIFrameElement).contentWindow.document.body.innerHTML;
       if (value) {
         this.common.loader(true);

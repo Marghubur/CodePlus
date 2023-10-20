@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonService, ContentList } from '../services/common.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AjaxService } from '../services/ajax.service';
+import { TopicContent } from 'src/util/intrface';
 
 @Component({
   selector: 'app-view-content',
@@ -14,7 +15,16 @@ export class ViewContentComponent implements OnInit {
   now: Date = new Date();
   isFileFound: boolean = false;
   content: any = null;
-
+  contentDetail: TopicContent = {
+    BodyContent : "",
+    Part: 0,
+    FilePath: "",
+    ImgPath: "",
+    Type:"",
+    Title: "",
+    Detail: "",
+    IsArticle: false
+  }
   constructor(private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
               private http: AjaxService,
@@ -30,6 +40,7 @@ export class ViewContentComponent implements OnInit {
       this.common.loader(true);
       this.http.get(`Article/GetContentById/${this.item.contentId}`).subscribe((res: any) => {
         if (res.ResponseBody) {
+          this.contentDetail = res.ResponseBody;
           this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody.BodyContent);
           this.isFileFound = true;
           this.common.loader(false);
@@ -37,7 +48,7 @@ export class ViewContentComponent implements OnInit {
         }
       }, (err) => {
         this.common.loader(false);
-        this.common.error(err.error.StatusMessage);
+        this.common.error(err);
       })
     }
   }

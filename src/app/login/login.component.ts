@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       }
     }, (err) => {
       this.common.loader(false);
-      this.common.error(err.error.StatusMessage);
+      this.common.error(err);
     })
   }
   
