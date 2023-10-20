@@ -23,6 +23,7 @@ export class NavbarComponent implements DoCheck {
   }
 
   logOut() {
+    this.common.success("logout successfully");
     this.local.clearData();
     this.router.navigate(['/home'])
   }

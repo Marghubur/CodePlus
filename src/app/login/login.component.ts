@@ -33,21 +33,22 @@ export class LoginComponent implements OnInit {
   login() {
     this.common.loader(true);
     if (this.loginForm.invalid) {
-      console.log("Invalid form")
+      this.common.error("Invalid form")
       this.common.loader(false);
       return;
     }
     let value = this.loginForm.value;
-    this.http.post("User/Login", value).subscribe((res: any) => {
+    this.http.login("User/Login", value).subscribe((res: any) => {
       if (res.ResponseBody) {
         let user = res.ResponseBody;
+        this.common.success("Login successfully");
         this.common.loader(false);
         this.local.saveData(user);
         this.router.navigate(['/home'])
       }
     }, (err) => {
       this.common.loader(false);
-      console.log(err.error.StatusMessage);
+      this.common.error(err.error.StatusMessage);
     })
   }
   

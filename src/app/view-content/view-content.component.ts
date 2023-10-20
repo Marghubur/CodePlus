@@ -33,11 +33,11 @@ export class ViewContentComponent implements OnInit {
           this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody.BodyContent);
           this.isFileFound = true;
           this.common.loader(false);
-          console.log(res.ResponseBody)
+          this.common.error(res.ResponseBody)
         }
       }, (err) => {
         this.common.loader(false);
-        console.log(err.error.StatusMessage);
+        this.common.error(err.error.StatusMessage);
       })
     }
   }

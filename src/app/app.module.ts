@@ -10,7 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ViewContentComponent } from './view-content/view-content.component';
 import { EditorComponent } from './editor/editor.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from  '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from  '@angular/common/http';
 import { ContentListComponent } from './content-list/content-list.component';
 import { LoginComponent } from './login/login.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
@@ -20,6 +20,8 @@ import { VideoComponent } from './video/video.component';
 import { BookComponent } from './book/book.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { LinksComponent } from './links/links.component';
+import { JwtIntercpetorInterceptor } from 'src/Auth/jwt-intercpetor.interceptor';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { LinksComponent } from './links/links.component';
     VideoComponent,
     BookComponent,
     ArticlesComponent,
-    LinksComponent
+    LinksComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,9 @@ import { LinksComponent } from './links/links.component';
     HttpClientModule ,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtIntercpetorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

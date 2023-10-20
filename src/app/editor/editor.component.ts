@@ -28,7 +28,8 @@ export class EditorComponent implements OnInit, AfterViewChecked {
     ImgPath: "",
     Type:"",
     Title: "",
-    Detail: ""
+    Detail: "",
+    IsArticle: false
   }
   Type: Array<string> = Type;
   param: any = null;
@@ -70,7 +71,7 @@ export class EditorComponent implements OnInit, AfterViewChecked {
         }
       }, (err) => {
         this.common.loader(false);
-        console.log(err.error.StatusMessage);
+        this.common.error(err.error.StatusMessage);
       })
     }
   }
@@ -169,15 +170,15 @@ export class EditorComponent implements OnInit, AfterViewChecked {
         formData.append("article", JSON.stringify(this.fileDetail));
         formData.append(`${this.fileDetail.Type}_${this.fileDetail.Part}`, this.imgFileDetail[0].file);
         this.http.post("Article/SaveArticle", formData).subscribe(res => {
-          console.log("save");
+          this.common.success("save");
           this.common.loader(false);
         }, (error) => {
-          console.log(error);
+          this.common.error(error);
           this.common.loader(false);
         })
       }
     } else {
-      console.log("Title, Detail, Part, Type and Thumbnail is manditory.");
+      this.common.error("Title, Detail, Part, Type and Thumbnail is manditory.");
     }
   }
 

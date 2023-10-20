@@ -8,6 +8,7 @@ export interface TopicContent {
     FilePath: string,
     ImgPath: string,
     ContentId?: number,
+    IsArticle?: boolean
 }  
 
 export interface IBreadCrumb {
@@ -26,4 +27,17 @@ export interface UserDetail {
 export enum Role {
     Admin = 1,
     User = 2
+}
+
+
+export class Notification {  
+    type: NotificationType;  
+    message: string;  
+} 
+
+export enum NotificationType {  
+Success,  
+Error,  
+Info,  
+Warning  
 }

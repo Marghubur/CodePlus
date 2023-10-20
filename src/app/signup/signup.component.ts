@@ -34,7 +34,7 @@ export class SignupComponent {
   register() {
     this.common.loader(true);
     if (this.signupForm.invalid) {
-      console.log("Invalid form")
+      this.common.error("Invalid form")
       this.common.loader(false);
       return;
     }
@@ -46,7 +46,7 @@ export class SignupComponent {
       }
     }, (err) => {
       this.common.loader(false);
-      console.log(err.error.StatusMessage);
+      this.common.error(err.error.StatusMessage);
     })
   }
 }

@@ -31,11 +31,10 @@ export class ContentListComponent implements OnInit {
       if (res.ResponseBody) {
         this.common.loader(false);
         this.contentDetail = res.ResponseBody;
-        console.log(this.contentDetail )
       }
     }, (err) => {
       this.common.loader(false);
-      console.log(err.error.StatusMessage);
+      this.common.error(err.error.StatusMessage);
     })
   }
 }

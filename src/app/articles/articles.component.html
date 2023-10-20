@@ -1,3 +1,19 @@
-<div class="text-center">
-    <img src="assets/construction.png" alt="">
+<div class="container mb-4">
+    <div class="row col-md-12" *ngIf="item.length > 0">
+        <div class="col-md-4 mt-4" *ngFor="let item of item">
+            <div class="card rounded-4 overflow-hidden">
+                <img [src]="item.ImgPath" class="card-img-top overflow-hidden" alt="img">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.Title}}</h5>
+                    <p class="card-text text-justify">{{item.Detail}}</p>
+                    <div class="d-inline-block">
+                        <a href="javascript:void(0)" class="button-42 text-decoration-none" (click)="viewContent(item)">Read More <i class="fa fa-long-arrow-right ps-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-md-12 text-center text-danger fs-5 py-5 my-5" *ngIf="item.length == 0">
+        <span class="py-5">Record Not Found</span>
+    </div>
 </div>

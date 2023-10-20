@@ -31,11 +31,10 @@ export class HomeComponent implements OnInit {
             x.ImgPath = this.http.imgBaseUrl + x.ImgPath;
           })
         }
-        console.log(this.item )
       }
     }, (err) => {
       this.common.loader(false);
-      console.log(err.error.StatusMessage);
+      this.common.error(err.error.StatusMessage);
     })
   }
 

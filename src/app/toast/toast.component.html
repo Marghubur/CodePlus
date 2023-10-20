@@ -1,0 +1,13 @@
+<div id="toast-container" class="toast-top-right" *ngFor="let item of notifications">  
+    <div class="toast {{cssClass(item) }} d-flex align-items-center justify-content-between rounded" aria-live="polite" style="display: block;">
+        <div class="col-auto d-flex align-items-center col-md-12">
+            <i class="fa fa-check pe-3 fa-lg" [ngClass]="{'fa-check': item.type == 0, 'fa-times': item.type == 1, 'fa-info': item.type == 2, 'fa-warning': item.type == 3}"></i>  
+            <div class="toast-message col-md-10">  
+                {{item.message}}  
+            </div>
+        </div>  
+        <button type="button" class="toast-close-button float-end" role="button" (click)="removeNotification(item)">
+            <i class="fa fa-close"></i>
+        </button>  
+    </div>  
+</div>  

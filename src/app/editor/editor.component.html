@@ -98,6 +98,13 @@
               <input type="number" min="0" placeholder="Part" [(ngModel)]="fileDetail.Part" class="form-control">
           </div>
           <div class="col-md-2">
+            <label for="" class="form-label">Is Article</label>
+            <select [(ngModel)]="fileDetail.IsArticle" class="form-select">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+        </div>
+          <div class="col-md-2">
               <img [src]="imgUrl" alt="thumbnail" class="img-thumbnail">
           </div>
           <div class="col-auto" (change)="uploadFile($event)">
