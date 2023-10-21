@@ -8,7 +8,10 @@ export interface TopicContent {
     FilePath: string,
     ImgPath: string,
     ContentId?: number,
-    IsArticle?: boolean
+    IsArticle?: boolean,
+    IsPublish?: boolean,
+    SaveOn?: Date,
+    PublishOn?: Date
 }  
 
 export interface IBreadCrumb {

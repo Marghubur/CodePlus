@@ -1,3 +1,34 @@
-<div class="text-center">
-    <img src="assets/construction.png" alt="">
-</div>
+<div class="continaer-fluid p-5">
+    <div class="row" *ngIf="selectedMenu != null">
+        <div class="col-md-2" *ngFor="let item of menu; let i=index;">
+            <div class="card">
+                <a href="javascript:void(0)" class="text-decoration-none">
+                    <img src="{{item.Img}}" alt="" class="img-fluid">
+                    <h5 class="fw-bold text-danger mt-2">{{item.Name}}</h5>
+                </a>
+            </div>
+        </div>
+      <!-- <div class="col-md-2">
+        <div class="list-group">
+          <a href="javascript:void(0)" *ngFor="let item of menu; let i=index;" (click)="selectMenu(item)" class="list-group-item list-group-item-action" 
+            aria-current="true" [ngClass]="{'active': i+1 == selectedMenu.Id}">
+            {{item.Name}}
+          </a>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;" *ngIf="selectedMenu.Id == 1">
+          <iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/contp/jpwz/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe>
+        </div>
+        <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;" *ngIf="selectedMenu.Id == 2">
+          <iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/contp/jpwv/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe>
+        </div>
+        <div style="position:relative;padding-top:max(60%,324px);width:100%;height:0;" *ngIf="selectedMenu.Id == 3">
+          <iframe style="position:absolute;border:none;width:100%;height:100%;left:0;top:0;" src="https://online.fliphtml5.com/contp/txpu/"  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  
+  
+  
