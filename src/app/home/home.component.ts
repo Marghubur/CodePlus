@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = false;
   page: number = 1; // Initial page
   allDataLoaded: boolean = false;
+  isGridView: boolean = true;
 
   constructor(private router:Router,
               private common: CommonService,
@@ -59,5 +60,12 @@ export class HomeComponent implements OnInit {
 
   viewContent(item:TopicContent) {
     this.router.navigate(['/blog/view'], {queryParams: {type: item.Type, part: item.Part, contentId: item.ContentId}});
+  }
+
+  selectType(e: string) {
+    if (e === "true")
+      this.isGridView = true;
+    else
+      this.isGridView = false;
   }
 }
