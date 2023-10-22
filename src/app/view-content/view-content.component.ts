@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService, ContentList } from '../services/common.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AjaxService } from '../services/ajax.service';
@@ -28,6 +28,7 @@ export class ViewContentComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
               private http: AjaxService,
+              private router: Router,
               private common: CommonService) {}
 
   ngOnInit(): void {
@@ -44,11 +45,25 @@ export class ViewContentComponent implements OnInit {
           this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody.BodyContent);
           this.isFileFound = true;
           this.common.loader(false);
-          this.common.error(res.ResponseBody)
         }
       }, (err) => {
         this.common.loader(false);
         this.common.error(err);
+      })
+    }
+  }
+
+  shareContent() {
+    console.log(this.router.url);
+    if (navigator.share) {
+      let url = this.router.url;
+      let basrUrl = "https://code-plus-five.vercel.app"
+      navigator.share({
+        title: this.contentDetail.Title,
+        text: this.contentDetail.Detail,
+        url: `${basrUrl}${url}`
+      }).catch((e: any) => {
+        this.common.error(e);
       })
     }
   }
