@@ -40,12 +40,12 @@ export class HomeComponent implements OnInit {
         if (res.ResponseBody.length === 0) {
           this.allDataLoaded = true; // No more data available
         }
-        this.item = this.item.concat(res.ResponseBody);
-        if (this.item && this.item.length > 0) {
-          this.item.forEach(x => {
+        if (res.ResponseBody.length > 0) {
+          res.ResponseBody.forEach(x => {
             x.ImgPath = this.http.imgBaseUrl + x.ImgPath;
           })
         }
+        this.item = this.item.concat(res.ResponseBody);
         this.page++;
         this.common.loader(false);
         this.isLoading = false;
