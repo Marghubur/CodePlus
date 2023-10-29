@@ -13,7 +13,7 @@
     border: 1px solid #bcbcbc;
     color: var(--secondary-color) !important;
   }
-  a {
+  .icon-link {
     background-color: var(--primary-color);
     // border: 1px solid var(--secondary-color);
     margin: 5px;
@@ -62,3 +62,62 @@
   textarea {
     resize: none;
   }
+
+  // Input CHip
+
+  .main-container {
+    background-color: #fff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.438rem;
+    box-shadow: 0 0.375rem 0.75rem #e3e5e3;
+  }
+  
+  .input-container {
+    border: 1px solid #918e8e;
+  }
+  
+  .chip-bar {
+    cursor: text;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+  }
+  
+  .chip {
+    cursor: default;
+    list-style: none;
+    padding: 0.375rem 0.75rem;
+    margin: 0.125rem;
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    color: #2a7856;
+    border: 0.125rem solid #d3f4e6;
+    background-color: #d3f4e6;
+  }
+  
+  .fa-close {
+    margin-left: 0.313rem;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .input-field {
+    cursor: default;
+    flex: 1 1 auto;
+    display: inline-flex;
+    margin: 0.125rem;
+    padding: 0.375rem 0.75rem;
+    border: 0.125rem solid transparent;
+  }
+  
+  .input {
+    outline: 0;
+    border: 0;
+    border-radius: 0;
+    min-width: 2.5rem;
+    flex: 1;
+    font-size: 1rem;
+  }
+  

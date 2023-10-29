@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 declare var $:any;
 import 'bootstrap';
@@ -29,13 +29,17 @@ export class EditorComponent implements OnInit, AfterViewChecked {
     Type:"",
     Title: "",
     Detail: "",
-    IsArticle: false
+    IsArticle: false,
+    AllTags: []
   }
   Type: Array<string> = Type;
   param: any = null;
   content: any = null;
   imgUrl: string = null;
   imgFileDetail: Array<any> = [];
+  @Input() items: Array<any> = [];
+  @Input() placeholder: string = "Type...";
+  @Input() removable: boolean = true;
 
   constructor(private http: AjaxService,
               private route: ActivatedRoute,
@@ -67,6 +71,11 @@ export class EditorComponent implements OnInit, AfterViewChecked {
           this.content = this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody.BodyContent);
           this.fileDetail = res.ResponseBody;
           this.imageURL = this.http.imgBaseUrl + this.fileDetail.ImgPath;
+          if (this.fileDetail.AllTags)
+            this.items = this.fileDetail.AllTags;
+          else
+            this.items = [];
+
           this.common.loader(false);
         }
       }, (err) => {
@@ -161,14 +170,16 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   }
 
   saveContent() {
-    if (this.fileDetail.Type && this.imgFileDetail && this.imgFileDetail.length > 0 && this.fileDetail.Title && this.fileDetail.Detail) {
+    if (this.fileDetail.Type && this.fileDetail.Title && this.fileDetail.Detail) {
       let value = (document.getElementById("richTextField") as HTMLIFrameElement).contentWindow.document.body.innerHTML;
       if (value) {
         this.common.loader(true);
         this.fileDetail.BodyContent = value;
+        this.fileDetail.AllTags = this.items;
         let formData = new FormData();
         formData.append("article", JSON.stringify(this.fileDetail));
-        formData.append(`${this.fileDetail.Type}_${this.fileDetail.Part}`, this.imgFileDetail[0].file);
+        if (this.imgFileDetail && this.imgFileDetail.length > 0)
+          formData.append(`${this.fileDetail.Type}_${this.fileDetail.Part}`, this.imgFileDetail[0].file);
         this.http.post("Article/SaveArticle", formData).subscribe(res => {
           this.common.success("save");
           this.common.loader(false);
@@ -201,6 +212,19 @@ export class EditorComponent implements OnInit, AfterViewChecked {
   fireBrowserImgFile() {
     this.imgFileDetail = [];
     $('#uploadocument').click();
+  }
+
+  addChip(e: any) {
+    let value = e.target.value;
+    if (value && value != '') {
+      this.items.push(value);
+    }
+    e.target.value = '';
+  }
+
+  removeChip(i: number) {
+    if (this.items.length > 0)
+      this.items.splice(i, 1);
   }
 
 }

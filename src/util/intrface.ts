@@ -11,7 +11,9 @@ export interface TopicContent {
     IsArticle?: boolean,
     IsPublish?: boolean,
     SaveOn?: Date,
-    PublishOn?: Date
+    PublishOn?: Date,
+    AllTags?: Array<string>,
+    Tags?: string
 }  
 
 export interface IBreadCrumb {
