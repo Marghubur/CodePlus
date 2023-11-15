@@ -20,8 +20,13 @@ export class ErrorInterceptor implements HttpInterceptor {
 
           this.local.clearData();
       }
-
-      const error = err.error?.StatusMessage || err.statusText;
+      let error = null;
+      if (err.error?.StatusMessage)
+        error = err.error?.StatusMessage;
+      else if (err.error?.ResponseBody)
+        error = err.error?.ResponseBody;
+      else
+        error =  err.statusText;
       console.error(err);
       return throwError(() => error);
     }))
