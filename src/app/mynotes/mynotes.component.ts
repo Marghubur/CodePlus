@@ -55,6 +55,7 @@ export class MynotesComponent implements OnInit {
       NoteId : 0,
       Title : ""
     };
+    this.isReadOnly = false;
     $("#manageNotes").modal('show');
   }
 
