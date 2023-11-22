@@ -8,11 +8,12 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthguardGuard } from 'src/Auth/authguard.guard';
-import { Article, BlogContent, BlogEditor, BlogView, Book, ForgotPassword, Home, Links, Login, SignUp, Video } from 'src/util/constant';
+import { Article, BlogContent, BlogEditor, BlogView, Book, ForgotPassword, Home, Links, Login, MyNotes, SignUp, Video } from 'src/util/constant';
 import { VideoComponent } from './video/video.component';
 import { BookComponent } from './book/book.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { LinksComponent } from './links/links.component';
+import { MynotesComponent } from './mynotes/mynotes.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: BlogView, component: ViewContentComponent, data: {breadcrumb: "View"}},
   {path: BlogEditor, component: EditorComponent, data: {breadcrumb: "Editor"}, canActivate: [AuthguardGuard]},
   {path: BlogContent, component: ContentListComponent, data: {breadcrumb: "Content"}, canActivate: [AuthguardGuard]},
+  {path: MyNotes, component: MynotesComponent, data: {breadcrumb: "MyNotes"}, canActivate: [AuthguardGuard]},
   {path: Login, component: LoginComponent},
   {path: SignUp, component: SignupComponent},
   {path: ForgotPassword, component: ForgotPasswordComponent},

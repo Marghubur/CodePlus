@@ -1,0 +1,20 @@
+.notepad-container {
+    display: flex;
+  }
+  
+  .line-numbers {
+    margin-right: 10px;
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+    font-family: monospace;
+    text-align: right;
+  }
+  
+  textarea {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-family: monospace;
+    resize: none;
+  }
+  

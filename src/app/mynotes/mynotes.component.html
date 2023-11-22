@@ -1,0 +1,60 @@
+<div class="container pb-5">
+    <div class="text-end mt-4">
+        <button class="btn btn-outline-success" (click)="addNotePopUp()"><i class="fa fa-plus"></i> Add Notes</button>
+    </div>
+    <ng-container *ngIf="allNotes.length > 0">
+        <h4 class="fw-bold text-dark text-center">My Notes</h4>
+        <div class="row">
+            <div class="col-md-3 mt-2" *ngFor="let item of allNotes">
+                <div class="card">
+                    <div class="card-header">
+                      <a href="javascript:void(0)" class="text-dark fw-bold" (click)="viewNote(item)">
+                        {{item.Title}}
+                      </a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="allNotes.length == 0">
+        <div class="py-5 my-5 text-center">
+            <span class="fw-bold text-dark py-5">No Record Found</span>
+        </div>
+    </ng-container>
+</div>
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="manageNotes" tabindex="-1" aria-labelledby="manageNotesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="manageNotesLabel" *ngIf="!isReadOnly">Note</h1>
+          <ng-container *ngIf="isReadOnly">
+            <h1 class="modal-title fs-5" id="manageNotesLabel">{{currentNote.Title}}</h1>
+            <a href="javascript:void(0)" class="text-decoration-none" (click)="editNote()"><i class="fa fa-pencil"></i></a>
+          </ng-container>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3 d-flex" *ngIf="!isReadOnly">
+                <label class="form-label pe-2">Title</label>
+                <input type="text" [readOnly]="isReadOnly" class="form-control" [(ngModel)]="currentNote.Title">
+            </div>
+            <div class="notepad-container">
+                <div class="line-numbers">
+                <div *ngFor="let line of lines">{{ line }}</div>
+                </div>
+                <textarea [readOnly]="isReadOnly" [(ngModel)]="currentNote.Content" rows="20"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer" *ngIf="!isReadOnly">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-success" (click)="addNotes()"><i class="fa fa-floppy-o pe-1"></i> Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  

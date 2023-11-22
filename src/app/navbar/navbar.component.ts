@@ -17,6 +17,7 @@ export class NavbarComponent implements DoCheck {
   constructor(private local:LocalService,
               private common: CommonService,
               private router: Router) {}
+              
   ngDoCheck(): void {
     this.isAdmin = this.common.isAdmin();
     this.isLogIn = this.common.isLogIn();

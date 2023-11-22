@@ -23,6 +23,7 @@ import { LinksComponent } from './links/links.component';
 import { JwtIntercpetorInterceptor } from 'src/Auth/jwt-intercpetor.interceptor';
 import { ToastComponent } from './toast/toast.component';
 import { ErrorInterceptor } from 'src/Auth/error.interceptor';
+import { MynotesComponent } from './mynotes/mynotes.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ErrorInterceptor } from 'src/Auth/error.interceptor';
     BookComponent,
     ArticlesComponent,
     LinksComponent,
-    ToastComponent
+    ToastComponent,
+    MynotesComponent
   ],
   imports: [
     BrowserModule,

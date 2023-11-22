@@ -37,6 +37,11 @@ export const NavMenu: Array<any> = [
       Link: "/blog/editor",
       Icon: "fa fa-paragraph",
       AccessCode: 1
+    }, {
+      Name: "My Notes",
+      Link: "/blog/mynotes",
+      Icon: "fa fa-sticky-note",
+      AccessCode: 1
     }
 ];
 
@@ -55,3 +60,4 @@ export const Video = "blog/video";
 export const Article = "blog/article";
 export const Book = "blog/book";
 export const Links = "blog/link";
+export const MyNotes = "blog/mynotes";
