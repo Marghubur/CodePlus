@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class AjaxService {
   //baseUrl: string = "http://localhost:7500/api/";
-  baseUrl: string = "http://codeplus.somee.com/api/";
+  baseUrl: string = "//codeplus.somee.com/api/";
   // imgBaseUrl: string = "http://localhost:7500/";
-  imgBaseUrl: string = "http://codeplus.somee.com/";
+  imgBaseUrl: string = "//codeplus.somee.com/";
 
   constructor(private http: HttpClient) { }
 
