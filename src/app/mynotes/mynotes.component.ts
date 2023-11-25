@@ -104,4 +104,3 @@ interface Notes {
   Content: any,
   Title: string
 }
-

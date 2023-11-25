@@ -33,7 +33,7 @@
           <h1 class="modal-title fs-5" id="manageNotesLabel" *ngIf="!isReadOnly">Note</h1>
           <ng-container *ngIf="isReadOnly">
             <h1 class="modal-title fs-5" id="manageNotesLabel">{{currentNote.Title}}</h1>
-            <a href="javascript:void(0)" class="text-decoration-none" (click)="editNote()"><i class="fa fa-pencil"></i></a>
+            <a href="javascript:void(0)" class="text-decoration-none ps-3" (click)="editNote()"><i class="fa fa-pencil"></i></a>
           </ng-container>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
