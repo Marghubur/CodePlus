@@ -11,6 +11,7 @@ export class AjaxService {
   // imgBaseUrl: string = "http://localhost:7500/";
   //imgBaseUrl: string = "//codeplus.somee.com/";
   imgBaseUrl: string = "https://marghub.bsite.net/";
+  
   constructor(private http: HttpClient) { }
 
   get(url: string) {
