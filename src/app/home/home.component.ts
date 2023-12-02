@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
           res.ResponseBody.forEach(x => {
             x.ImgPath = this.http.imgBaseUrl + x.ImgPath;
             if (x.Tags)
-              x.AllTags = JSON.parse(x.Tags);
+              x.AllTags = x.Tags;
           })
         }
         this.item = this.item.concat(res.ResponseBody);
