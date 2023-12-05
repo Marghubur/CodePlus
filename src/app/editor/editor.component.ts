@@ -176,10 +176,13 @@ export class EditorComponent implements OnInit, AfterViewChecked {
         this.common.loader(true);
         this.fileDetail.BodyContent = value;
         this.fileDetail.AllTags = this.items;
+        if (!this.fileDetail.ContentId)
+          this.fileDetail.ContentId = 0;
+        
         let formData = new FormData();
         formData.append("article", JSON.stringify(this.fileDetail));
         if (this.imgFileDetail && this.imgFileDetail.length > 0)
-          formData.append(`${this.fileDetail.Type}_${this.fileDetail.Part}`, this.imgFileDetail[0].file);
+          formData.append(`file`, this.imgFileDetail[0].file);
         this.http.post("Article/SaveArticle", formData).subscribe(res => {
           this.common.success("save");
           this.common.loader(false);
