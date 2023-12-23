@@ -1,6 +1,7 @@
 <div class="container pb-5">
     <div class="text-end mt-4">
-        <button class="btn btn-outline-success" (click)="addNotePopUp()"><i class="fa fa-plus"></i> Add Notes</button>
+      <button class="btn btn-outline-success me-3" (click)="addFolderPopUp()"><i class="fa fa-plus"></i> Add Folder</button>  
+      <button class="btn btn-outline-success" (click)="addNotePopUp()"><i class="fa fa-plus"></i> Add Notes</button>
     </div>
     <ng-container *ngIf="allNotes.length > 0">
         <h4 class="fw-bold text-dark text-center">My Notes</h4>
@@ -57,4 +58,24 @@
     </div>
   </div>
 
-  
+<!-- Folder Modal -->
+<div class="modal fade" id="addFolderModal" tabindex="-1" aria-labelledby="addFolderModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addFolderModalLabel">Add Folder</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="mb-3">
+              <label class="form-label pe-2">Folder Name</label>
+              <input type="text" class="form-control border" [(ngModel)]="newFolderName">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-success" (click)="addFolder()"><i class="fa fa-floppy-o pe-1"></i> Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>  

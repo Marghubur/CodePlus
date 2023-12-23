@@ -41,7 +41,7 @@ export const NavMenu: Array<any> = [
       Name: "My Notes",
       Link: "/blog/mynotes",
       Icon: "fa fa-sticky-note",
-      AccessCode: 1
+      AccessCode: 2
     }
 ];
 

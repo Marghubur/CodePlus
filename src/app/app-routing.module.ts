@@ -14,6 +14,7 @@ import { BookComponent } from './book/book.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { LinksComponent } from './links/links.component';
 import { MynotesComponent } from './mynotes/mynotes.component';
+import { RoleGuard } from 'src/Auth/role.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +22,7 @@ const routes: Routes = [
   {path: BlogView, component: ViewContentComponent, data: {breadcrumb: "View"}},
   {path: BlogEditor, component: EditorComponent, data: {breadcrumb: "Editor"}, canActivate: [AuthguardGuard]},
   {path: BlogContent, component: ContentListComponent, data: {breadcrumb: "Content"}, canActivate: [AuthguardGuard]},
-  {path: MyNotes, component: MynotesComponent, data: {breadcrumb: "MyNotes"}, canActivate: [AuthguardGuard]},
+  {path: MyNotes, component: MynotesComponent, data: {breadcrumb: "MyNotes"}, canActivate: [RoleGuard]},
   {path: Login, component: LoginComponent},
   {path: SignUp, component: SignupComponent},
   {path: ForgotPassword, component: ForgotPasswordComponent},

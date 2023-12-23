@@ -13,6 +13,7 @@ export class MynotesComponent implements OnInit {
 
   lines: string[] = ['1.'];
   allNotes: Array<Notes> = [];
+  newFolderName: string = null;
   currentNote: Notes = {
     Content: "",
     NoteId: 0,
@@ -72,7 +73,7 @@ export class MynotesComponent implements OnInit {
         this.common.error(err);
       })
     } else {
-      this.common.error("Please add Conte and Title first");
+      this.common.error("Please add Contet and Title first");
     }
   }
 
@@ -81,6 +82,8 @@ export class MynotesComponent implements OnInit {
       this.common.loader(true);
       this.http.get(`Notes/GetNoteById/${item.NoteId}`).subscribe((res: any) => {
         this.currentNote = res.ResponseBody;
+        let lines = this.currentNote.Content.split("\n");
+        this.lines = lines.map((_, index) => `${index + 1}.`);
         this.currentNote.Content = this.sanitizer.sanitize(SecurityContext.HTML, this.sanitizer.bypassSecurityTrustHtml(res.ResponseBody.Content));
         this.common.loader(false);
         this.isReadOnly = true;
@@ -95,6 +98,29 @@ export class MynotesComponent implements OnInit {
 
   editNote() {
     this.isReadOnly = false;
+  }
+
+  addFolderPopUp() {
+    $("#addFolderModal").modal("show");
+  }
+
+  addFolder() {
+    if (this.newFolderName) {
+      this.common.loader(true);
+      let folder = {
+        FolderName: this.newFolderName
+      }
+      this.http.post("Notes/CreateFolder", folder).subscribe((res: any) => {
+        this.common.loader(false);
+        $("#addFolderModal").modal('hide');
+        this.common.success("Folder added successfully");
+      }, (err) => {
+        this.common.loader(false);
+        this.common.error(err);
+      })
+    } else {
+      this.common.error("Please add folder name first");
+    }
   }
   
 }
