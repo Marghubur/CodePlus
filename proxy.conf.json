@@ -1,7 +1,0 @@
-{
-    "/api": {
-      "target": "http://www.codeplus.somee.com",
-      "secure": false
-    }
-  }
-  
