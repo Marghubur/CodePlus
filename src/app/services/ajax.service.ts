@@ -7,11 +7,11 @@ import { Injectable } from '@angular/core';
 export class AjaxService {
    //baseUrl: string = "http://localhost:7500/api/";
   // baseUrl: string = "https://codeplus-f3hk.onrender.com/api/";
-  baseUrl: string = "http://www.codeplus.somee.com/api/";
+  baseUrl: string = "https://www.codeplus.somee.com/api/";
   //baseUrl: string = "https://marghub.bsite.net/api/";
    //imgBaseUrl: string = "http://localhost:7500/";
   //imgBaseUrl: string = "https://codeplus-f3hk.onrender.com/";
-  imgBaseUrl: string = "http://www.codeplus.somee.com/";
+  imgBaseUrl: string = "https://www.codeplus.somee.com/";
   //imgBaseUrl: string = "https://marghub.bsite.net/";
   
   constructor(private http: HttpClient) { }
