@@ -45,7 +45,7 @@ export class CommonService {
   isLogIn() {
     let flag = false;
     let data = this.local.getData(masterkey);
-    if (data.Token)
+    if (data && data.Token)
       flag = true;
 
     return flag;
