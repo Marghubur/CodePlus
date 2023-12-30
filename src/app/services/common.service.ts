@@ -51,6 +51,14 @@ export class CommonService {
     return flag;
   }
 
+  getUser() {
+    let data = this.local.getData(masterkey);
+    if (data && data.User)
+      return data.User;
+
+    return null;
+  }
+
   getAlert(): Observable<any> {  
     return this.subject.asObservable();  
   }

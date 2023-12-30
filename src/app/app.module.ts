@@ -25,6 +25,7 @@ import { ToastComponent } from './toast/toast.component';
 import { ErrorInterceptor } from 'src/Auth/error.interceptor';
 import { MynotesComponent } from './mynotes/mynotes.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { OnlyNumberDirective } from 'src/util/OnlyNumberDirective';
 
 @NgModule({
   declarations: [
@@ -46,14 +47,15 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     LinksComponent,
     ToastComponent,
     MynotesComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    OnlyNumberDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule ,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtIntercpetorInterceptor, multi: true },

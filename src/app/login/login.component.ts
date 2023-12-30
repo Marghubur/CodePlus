@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.loginForm = this.fb.group({
-      Email: new FormControl("", [Validators.required, Validators.email]),
-      Password: new FormControl('', [Validators.required])
+      Email: new FormControl("marghub12@gmail.com", [Validators.required, Validators.email]),
+      Password: new FormControl('123456', [Validators.required])
     })
   }
 
@@ -43,11 +43,11 @@ export class LoginComponent implements OnInit {
         let data = res.ResponseBody;
         this.common.success("Login successfully");
         this.common.loader(false);
-        if (!data.PasswordChangeRequired) {
-          this.local.saveData(data);
+        this.local.saveData(data);
+        if (!data.User.PasswordChangeRequired) {
           this.router.navigate(['/home']);
         } else {
-          this.router.navigate(['/chnagepassword']);
+          this.router.navigate(['/changepassword']);
         }
       }
     }, (err) => {
