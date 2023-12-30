@@ -61,3 +61,4 @@ export const Article = "blog/article";
 export const Book = "blog/book";
 export const Links = "blog/link";
 export const MyNotes = "blog/mynotes";
+export const ChnagePassword = "changepassword";

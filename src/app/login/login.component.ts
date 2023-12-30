@@ -40,11 +40,15 @@ export class LoginComponent implements OnInit {
     let value = this.loginForm.value;
     this.http.login("User/Login", value).subscribe((res: any) => {
       if (res.ResponseBody) {
-        let user = res.ResponseBody;
+        let data = res.ResponseBody;
         this.common.success("Login successfully");
         this.common.loader(false);
-        this.local.saveData(user);
-        this.router.navigate(['/home'])
+        if (!data.PasswordChangeRequired) {
+          this.local.saveData(data);
+          this.router.navigate(['/home']);
+        } else {
+          this.router.navigate(['/chnagepassword']);
+        }
       }
     }, (err) => {
       this.common.loader(false);

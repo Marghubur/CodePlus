@@ -36,7 +36,7 @@ export class CommonService {
   isAdmin(): boolean {
     let flag = false;
     let data = this.local.getData(masterkey);
-    if (data && data.user && data.user.UsertypeId == Role.Admin)
+    if (data && data.User && data.User.UsertypeId == Role.Admin)
       flag = true;
 
     return flag;
@@ -45,7 +45,7 @@ export class CommonService {
   isLogIn() {
     let flag = false;
     let data = this.local.getData(masterkey);
-    if (data)
+    if (data.Token)
       flag = true;
 
     return flag;

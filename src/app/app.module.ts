@@ -24,6 +24,7 @@ import { JwtIntercpetorInterceptor } from 'src/Auth/jwt-intercpetor.interceptor'
 import { ToastComponent } from './toast/toast.component';
 import { ErrorInterceptor } from 'src/Auth/error.interceptor';
 import { MynotesComponent } from './mynotes/mynotes.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MynotesComponent } from './mynotes/mynotes.component';
     ArticlesComponent,
     LinksComponent,
     ToastComponent,
-    MynotesComponent
+    MynotesComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,
