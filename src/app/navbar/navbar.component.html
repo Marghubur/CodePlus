@@ -38,7 +38,7 @@
                             <span class="ps-2">{{item.Name}}</span>
                         </a>
                     </ng-container>
-                    <ng-container *ngIf="item.AccessCode == 1 && isAdmin">
+                    <ng-container *ngIf="item.AccessCode == 1 && isAdmin && isLogIn">
                         <a href="javascript:void(0)" class="text-decoration-none text-dark pe-2 me-3 fw-semibold" [routerLinkActiveOptions]="{exact: true}" [routerLink]="[item.Link]" routerLinkActive="router-link-active" >
                             <i [className]="item.Icon"></i>
                             <span class="ps-2">{{item.Name}}</span>

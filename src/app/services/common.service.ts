@@ -4,6 +4,7 @@ import { LocalService } from './local.service';
 import { masterkey } from 'src/util/constant';
 import { NotificationType, Role, Notification } from 'src/util/intrface';
 import { NavigationStart, Router } from '@angular/router';
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class CommonService {
   keepAfterRouteChange = true;  
   
   constructor(private router: Router,
-              private local: LocalService) {  
+              private local: LocalService,
+              private jwt: JwtService) {  
     // clear alert messages on route change unless 'keepAfterRouteChange' flag is true  
     router.events.subscribe(event => {  
         if (event instanceof NavigationStart) {  
@@ -48,7 +50,7 @@ export class CommonService {
     if (data && data.Token)
       flag = true;
 
-    return flag;
+    return this.jwt.isTokenExpired;
   }
 
   getUser() {
