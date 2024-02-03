@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthguardGuard } from 'src/Auth/authguard.guard';
-import { Article, BlogContent, BlogEditor, BlogView, Book, ChnagePassword, ForgotPassword, Home, Links, Login, MyNotes, SignUp, Video } from 'src/util/constant';
+import { Article, BlogContent, BlogEditor, BlogView, Book, ChnagePassword, DailyArticle, ForgotPassword, Home, Links, Login, MyNotes, SignUp, Video } from 'src/util/constant';
 import { VideoComponent } from './video/video.component';
 import { BookComponent } from './book/book.component';
 import { ArticlesComponent } from './articles/articles.component';
@@ -16,6 +16,7 @@ import { LinksComponent } from './links/links.component';
 import { MynotesComponent } from './mynotes/mynotes.component';
 import { RoleGuard } from 'src/Auth/role.guard';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { DailyArticleComponent } from './daily-article/daily-article.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path: Article, component: ArticlesComponent},
   {path: Book, component: BookComponent},
   {path: Links, component: LinksComponent}, 
-  {path: ChnagePassword, component: ChangepasswordComponent}
+  {path: ChnagePassword, component: ChangepasswordComponent},
+  {path: DailyArticle, component: DailyArticleComponent}
 ];
 
 @NgModule({

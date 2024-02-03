@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row py-4">
+        <div class="col-md-8">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                    <button ngbNavLink (click)="getDailyArticle()">Article</button>
+                    <ng-template ngbNavContent>
+                        <ng-container *ngIf="isArticleLoaded">
+                            <h4 class="text-dark text-center fw-bold mt-3">{{dailyParagrah.Title}}</h4>
+                            <p>{{dailyParagrah.Content}}</p>
+                            <p>Content is copy from <a [href]="dailyParagrah.Link">{{dailyParagrah.Link}}</a></p>
+                        </ng-container>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <button ngbNavLink>Two</button>
+                    <ng-template ngbNavContent>
+                        <p>
+                            Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
+                            farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
+                            ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
+                            helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
+                            8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+                            stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
+                        </p>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="3">
+                    <button ngbNavLink>Daily Vocab</button>
+                    <ng-template ngbNavContent>
+                        <h3>Improve Your English Vocabulary</h3>
+                        <div class="card">
+                            {{randomWord | json}}
+                        </div>
+                    </ng-template>
+                </li>
+            </ul>
+
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+        <div class="col-md-4 dictionary-container">
+            <div class="card">
+                <div class="card-header">
+                  Dictionary
+                </div>
+                <div class="card-body">
+                    <div class="d-flex border rounded align-items-center rounded-end-0">
+                        <i class="fa fa-search px-2" aria-hidden="true"></i>
+                        <input type="text" placeholder="Type....." class="form-control border-0" (keyup)="getWordMeaning($event)">
+                        <div class="col-auto">
+                            <a href="#" class="btn btn-primary rounded-start-0">Search</a>
+                        </div>
+                    </div>
+                    <ng-container *ngIf="isDictionaryLoaded">
+                        <div class="py-2" *ngIf="dictionay.length > 0">
+                            <ng-container *ngFor="let item of dictionay;">
+                                <ng-container *ngIf="item.meanings.length > 0">
+                                    <ng-container *ngFor="let item of item.meanings; let last = last">
+                                        <ng-container *ngIf="item.partOfSpeech != null">
+                                            <p class="my-2 text-dark fw-bold">Part Of Speech : <span class="text-primary text-italic">{{item.partOfSpeech | titlecase}}</span></p>
+                                        </ng-container>
+                                        <ng-container *ngIf="item.definitions.length > 0">
+                                            <ng-container *ngFor="let item of item.definitions">
+                                                <div>
+                                                    <div class="d-flex text-dark">
+                                                        <h6 class="mb-0 fw-bold pe-2">Defination:</h6>
+                                                        <span>{{item.definition}}</span>
+                                                    </div>
+                                                </div>
+                                                <ng-container *ngIf="item.example != null">
+                                                    <p class="mb-2 fw-semibold text-success">Example : {{item.example}}</p>
+                                                </ng-container>
+                                            </ng-container>
+                                        </ng-container>
+                                        <ng-container *ngIf="item.antonyms.length > 0">
+                                            <div class="my-2">Antonyms: 
+                                                <span class="p-2" *ngFor="let item of item.antonyms">{{item}}</span>
+                                            </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="item.synonyms.length > 0">
+                                            <div class="my-2">Synonyms:
+                                                <span class="p-2" *ngFor="let item of item.synonyms">{{item}}</span>
+                                            </div>
+                                        </ng-container>
+                                        <hr *ngIf="!last">
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                        <div class="py-5 fw-bold text-dark text-center" *ngIf="dictionay.length == 0">
+                            Not found
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!isDictionaryLoaded">
+                        <div class="my-5 py-5 d-flex justify-content-center">
+                            <div class="new-loader"></div>
+                        </div>
+                    </ng-container>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

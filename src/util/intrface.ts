@@ -16,6 +16,13 @@ export interface TopicContent {
     Tags?: string
 }  
 
+export interface DailyParagraph {
+  Content: string,
+  Link: string,
+  Note?: string,
+  Title: string
+}
+
 export interface IBreadCrumb {
     label: string;
     url: string;
@@ -46,3 +53,37 @@ Error,
 Info,  
 Warning  
 }
+
+interface License {
+    name: string;
+    url: string;
+  }
+  
+  interface Phonetic {
+    text?: string;
+    audio: string;
+    sourceUrl: string;
+    license: License;
+  }
+  
+  interface Definition {
+    definition: string;
+    synonyms: string[];
+    antonyms: string[];
+    example?: string;
+  }
+  
+  interface Meaning {
+    partOfSpeech: string;
+    definitions: Definition[];
+    synonyms: string[];
+    antonyms: string[];
+  }
+  
+  export interface DictionaryResponse {
+    word: string;
+    phonetics: Phonetic[];
+    meanings: Meaning[];
+    license: License;
+    sourceUrls: string[];
+  }

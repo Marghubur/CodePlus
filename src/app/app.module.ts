@@ -26,6 +26,8 @@ import { ErrorInterceptor } from 'src/Auth/error.interceptor';
 import { MynotesComponent } from './mynotes/mynotes.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { OnlyNumberDirective } from 'src/util/OnlyNumberDirective';
+import { DailyArticleComponent } from './daily-article/daily-article.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { OnlyNumberDirective } from 'src/util/OnlyNumberDirective';
     ToastComponent,
     MynotesComponent,
     ChangepasswordComponent,
-    OnlyNumberDirective
+    OnlyNumberDirective,
+    DailyArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { OnlyNumberDirective } from 'src/util/OnlyNumberDirective';
     FormsModule,
     HttpClientModule ,
     ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtIntercpetorInterceptor, multi: true },
