@@ -1,42 +1,36 @@
 <div class="container">
     <div class="row py-4">
         <div class="col-md-8">
-            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-                <li [ngbNavItem]="1">
-                    <button ngbNavLink (click)="getDailyArticle()">Article</button>
-                    <ng-template ngbNavContent>
-                        <ng-container *ngIf="isArticleLoaded">
-                            <h4 class="text-dark text-center fw-bold mt-3">{{dailyParagrah.Title}}</h4>
-                            <p>{{dailyParagrah.Content}}</p>
-                            <p>Content is copy from <a [href]="dailyParagrah.Link">{{dailyParagrah.Link}}</a></p>
-                        </ng-container>
-                    </ng-template>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-bs-toggle="tab" href="#home" (click)="getDailyArticle()">Article</a>
                 </li>
-                <li [ngbNavItem]="2">
-                    <button ngbNavLink>Two</button>
-                    <ng-template ngbNavContent>
-                        <p>
-                            Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-                            farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-                            ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-                            helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-                            8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-                            stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
-                        </p>
-                    </ng-template>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#menu1">Menu 1</a>
                 </li>
-                <li [ngbNavItem]="3">
-                    <button ngbNavLink>Daily Vocab</button>
-                    <ng-template ngbNavContent>
-                        <h3>Improve Your English Vocabulary</h3>
-                        <div class="card">
-                            {{randomWord | json}}
-                        </div>
-                    </ng-template>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="tab" href="#menu2">Menu 2</a>
                 </li>
             </ul>
-
-            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+            
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div id="home" class="container tab-pane active"><br>
+                    <ng-container *ngIf="isArticleLoaded">
+                        <h4 class="text-dark text-center fw-bold mt-3">{{dailyParagrah.Title}}</h4>
+                        <p>{{dailyParagrah.Content}}</p>
+                        <p>Content is copy from <a [href]="dailyParagrah.Link">{{dailyParagrah.Link}}</a></p>
+                    </ng-container>
+                </div>
+                <div id="menu1" class="container tab-pane fade"><br>
+                    <h3>Menu 1</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div id="menu2" class="container tab-pane fade"><br>
+                    <h3>Menu 2</h3>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+            </div>
         </div>
         <div class="col-md-4 dictionary-container">
             <div class="card">

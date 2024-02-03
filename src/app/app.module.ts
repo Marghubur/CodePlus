@@ -27,7 +27,6 @@ import { MynotesComponent } from './mynotes/mynotes.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { OnlyNumberDirective } from 'src/util/OnlyNumberDirective';
 import { DailyArticleComponent } from './daily-article/daily-article.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -58,8 +57,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     FormsModule,
     HttpClientModule ,
-    ReactiveFormsModule,
-    NgbModule
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtIntercpetorInterceptor, multi: true },
